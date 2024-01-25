@@ -4,15 +4,33 @@ import java.util.Scanner;
 // Create Calculator class.
 public class Calculator {
 
-    // Create the main method
-    public static void main(String[] args) {
+    // Method for addition
+    public static double add(double num1, double num2) {
+        return num1 + num2;
+    }
 
-        // Setting default value for all variables.
+    // Method for subtraction
+    public static double subtract(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    // Method for multiplication
+    public static double multiply(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    // Method for division
+    public static double divide(double num1, double num2) {
+        if (num2 != 0) {
+            return num1 / num2;
+        } else {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+    }
+
+    // The main method
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        double num1 = 0;
-        char operator = 0;
-        double num2 = 0;
-        double result = 0;
 
         // Input First Number.
         System.out.println("Enter First Number");
@@ -24,13 +42,8 @@ public class Calculator {
             // Clear the invalid input
             input.next();
         }
-
         // If the loop exits, a valid number has been entered.
         num1 = input.nextDouble();
-
-        // Input Operator +, -, *, /.
-        System.out.println("Enter an Operator");
-        operator = input.next().charAt(0);
 
         // Input second number.
         System.out.println("Enter Second Number");
@@ -42,29 +55,29 @@ public class Calculator {
             // Clear the invalid input.
             input.next();
         }
-
-        // If the loop exits, a valid number has been entered.
+        // If the loop exits, a valid number has been entered
         num2 = input.nextDouble();
 
-        // Conditions to check valid operators.
-        if (operator == '+') {
-            result = num1 + num2;
-        } else if (operator == '-') {
-            result = num1 - num2;
-        } else if (operator == '*') {
-            result = num1 * num2;
-        } else if (operator == '/') {
-            if (num2 != 0) {
-                result = num1 / num2;
-            } else {
-                System.out.println("Cannot divide by 0.");
-            }
-        } else {
-            System.out.println("Invalid Operator.");
+        // Perform addition
+        double sum = add(num1, num2);
+        System.out.println(sum);
+
+        // Perform subtraction
+        double difference = subtract(num1, num2);
+        System.out.println(difference);
+
+        // Perform multiplication
+        double product = multiply(num1, num2);
+        System.out.println(product);
+
+        // Perform division
+        try {
+            double division = divide(num1, num2);
+            System.out.println(division);
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
         }
 
-        // Prints out the result if all conditions are met.
-        System.out.println(result);
-        }
-
+        scanner.close();
     }
+}
